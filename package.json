@@ -1,0 +1,47 @@
+{
+  "name": "x-hub-signature",
+  "version": "0.0.0",
+  "description": "X-Hub signing tools for Node and Express",
+  "keywords": [
+    "express",
+    "x-hub",
+    "x-hub-signature",
+    "xhub",
+    "signature",
+    "middleware",
+    "facebook",
+    "realtime",
+    "webhook"
+  ],
+  "author": {
+    "name": "Jonathon Hill"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/compwright/x-hub-signature",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/compwright/x-hub-signature.git"
+  },
+  "bugs": {
+    "url": "https://github.com/compwright/x-hub-signature/issues"
+  },
+  "main": "src/",
+  "engines": {
+    "node": ">=6.4"
+  },
+  "scripts": {
+    "eslint": "eslint ./src ./test",
+    "mocha": "mocha -r ./test/support/env -R spec ./test",
+    "test": "npm run eslint && npm run mocha"
+  },
+  "dependencies": {
+    "http-errors": "^1.6.2",
+    "read-all-stream": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "eslint": "^4.9.0",
+    "express": "^4.13.3",
+    "mocha": "^2.3.3"
+  }
+}
