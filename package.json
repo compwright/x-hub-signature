@@ -1,6 +1,6 @@
 {
   "name": "x-hub-signature",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "X-Hub signing tools for Node and Express",
   "keywords": [
     "express",
