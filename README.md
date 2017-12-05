@@ -18,12 +18,18 @@ npm install x-hub-signature --save
 
 To validate incoming webhooks signed with `X-Hub-Signature`, use the bundled Express middleware.
 
-> Note: It needs to registered before body-parser.
+> Note: Do not use body-parser directly with this middleware. If you need a specific body-parser configuration, you can pass in the method and configuration as options (see below).
 
 ```javascript
+const bodyParser = require('body-parser');
 const webhookMiddleware = require('x-hub-signature').middleware;
-app.use(webhookMiddleware({ algorithm: 'sha1', secret: 'secret', require: true }));
-app.use(bodyParser());
+app.use(webhookMiddleware({
+  algorithm: 'sha1',
+  secret: 'secret',
+  require: true,
+  bodyParser: bodyParser.json, // DO NOT INVOKE HERE! e.g. bodyParser.json()
+  bodyParserOptions: {}
+}));
 ```
 
 **Options:**
@@ -31,6 +37,8 @@ app.use(bodyParser());
 * `algorithm` (required) - `sha1` or other desired signing algorithm
 * `secret` (required) - signing secret that the webhook was signed with
 * `require` (optional) - boolean, whether to require the presence of the `X-Hub-Signature` header. If true, throws an HTTP 400 error if the header is not present. If false, the middleware will pass the request on if the header is not present, and validate the header only if it is present. (default: `true`)
+* `bodyParser` (optional) - the body-parser method to use, see the [documentation](https://www.npmjs.com/package/body-parser) for details
+* `bodyParserOptions` (optional) - the body-parser options to pass into the method specified, see the [documentation](https://www.npmjs.com/package/body-parser) for details (note: the `verify` option is not supported)
 
 ## Signature API
 

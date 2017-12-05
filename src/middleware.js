@@ -1,37 +1,42 @@
-const readStream = require('read-all-stream');
+const bodyParser = require('body-parser');
 const httpError = require('http-errors');
 const signer = require('./signer');
 
+function extractRawBody (req, res, buf) {
+    req.rawBody = buf;
+}
+
 const defaults = {
     require: true,
-    algorithm: 'sha1'
+    algorithm: 'sha1',
+    bodyParser: bodyParser.text,
+    bodyParserOptions: {}
 };
 
 module.exports = function (options) {
     const config = Object.assign({}, defaults, options);
-    const sign = signer(config);
+    config.bodyParserOptions.verify = extractRawBody;
     
-    return function (req, res, next) {
-        const signature = req.header('X-Hub-Signature');
+    const sign = signer(config);
 
-        if (config.require && !signature) {
-            next(httpError(400, 'Missing X-Hub-Signature header'));
-        }
-        else if (signature) {
-            readStream(req, 'utf8', (err, data) => {
-                if (err) {
-                    return next(err);
+    return [
+        config.bodyParser(config.bodyParserOptions),
+
+        function (req, res, next) {
+            const signature = req.header('X-Hub-Signature');
+    
+            if (config.require && !signature) {
+                return next(httpError(400, 'Missing X-Hub-Signature header'));
+            }
+            else if (signature) {
+                const body = new Buffer(req.rawBody);
+    
+                if (signature !== sign(body)) {
+                    return next(httpError(400, 'Invalid X-Hub-Signature'));
                 }
-                else if (signature !== sign(new Buffer(data))) {
-                    next(httpError(400, 'Invalid X-Hub-Signature'));
-                }
-                else {
-                    next();
-                }
-            });
-        }
-        else {
+            }
+    
             next();
         }
-    };
+    ];
 };

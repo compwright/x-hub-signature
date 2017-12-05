@@ -35,8 +35,8 @@
     "test": "npm run eslint && npm run mocha"
   },
   "dependencies": {
-    "http-errors": "^1.6.2",
-    "read-all-stream": "^3.1.0"
+    "body-parser": "^1.18.2",
+    "http-errors": "^1.6.2"
   },
   "devDependencies": {
     "chai": "^3.3.0",
