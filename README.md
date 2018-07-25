@@ -37,8 +37,26 @@ app.use(webhookMiddleware({
 * `algorithm` (required) - `sha1` or other desired signing algorithm
 * `secret` (required) - signing secret that the webhook was signed with
 * `require` (optional) - boolean, whether to require the presence of the `X-Hub-Signature` header. If true, throws an HTTP 400 error if the header is not present. If false, the middleware will pass the request on if the header is not present, and validate the header only if it is present. (default: `true`)
-* `bodyParser` (optional) - the body-parser method to use, see the [documentation](https://www.npmjs.com/package/body-parser) for details
-* `bodyParserOptions` (optional) - the body-parser options to pass into the method specified, see the [documentation](https://www.npmjs.com/package/body-parser) for details (note: the `verify` option is not supported)
+* `getRawBody` - function that accepts `req` as the first argument and returns the raw body. If you use the bundled body-parser verifier (see below), you don't need to set this option.
+
+### Use with body-parser
+
+A very common case is to have [body-parser](https://github.com/expressjs/body-parser) middleware globally defined. This produces complications for the x-hub-signature middleware, since it needs a copy of the raw unparsed body, and `body-parser` by default does not save this on the request.
+
+In this case, you can use the bundled `middleware.extractRawBody` verifier function with body-parser. This will set a reference to the buffered raw (unparsed) body to `req.rawBody`:
+
+```javascript
+const bodyParser = require('body-parser');
+const webhookMiddleware = require('x-hub-signature').middleware;
+app.use(bodyParser.json({
+  verify: webhookMiddleware.extractRawBody
+}))
+app.use(webhookMiddleware({
+  algorithm: 'sha1',
+  secret: 'secret',
+  require: true
+}));
+```
 
 ## Signature API
 

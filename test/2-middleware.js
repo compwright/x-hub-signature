@@ -1,23 +1,17 @@
 const middleware = require('../src/middleware');
-const Readable = require('stream').Readable;
 
 function mockRequest(signature, body) {
-    const req = new Readable();
-
-    req.headers = {};
+    const req = {
+        headers: {},
+        rawBody: Buffer.from(body),
+        header: function(name) {
+            return this.headers[name];
+        }
+    };
 
     if (signature) {
         req.headers['X-Hub-Signature'] = signature;
     }
-
-    req.header = function(name) {
-        return this.headers[name];
-    };
-
-    req._read = function() {
-        this.push(body);
-        this.push(null);
-    };
 
     return req;
 }
