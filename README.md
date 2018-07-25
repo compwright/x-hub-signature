@@ -18,17 +18,13 @@ npm install x-hub-signature --save
 
 To validate incoming webhooks signed with `X-Hub-Signature`, use the bundled Express middleware.
 
-> Note: Do not use body-parser directly with this middleware. If you need a specific body-parser configuration, you can pass in the method and configuration as options (see below).
-
 ```javascript
-const bodyParser = require('body-parser');
 const webhookMiddleware = require('x-hub-signature').middleware;
 app.use(webhookMiddleware({
   algorithm: 'sha1',
   secret: 'secret',
   require: true,
-  bodyParser: bodyParser.json, // DO NOT INVOKE HERE! e.g. bodyParser.json()
-  bodyParserOptions: {}
+  getRawBody: req => req.rawBody
 }));
 ```
 
