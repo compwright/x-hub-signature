@@ -1,6 +1,8 @@
 # X-Hub-Signature tools for Node.js and Express
 
 [![Build Status](https://travis-ci.org/compwright/x-hub-signature.svg?branch=master)](https://travis-ci.org/compwright/x-hub-signature)
+[![Dependency Status](https://img.shields.io/david/compwright/x-hub-signature.svg?style=flat-square)](https://david-dm.org/compwright/x-hub-signature)
+[![Download Status](https://img.shields.io/npm/dm/x-hub-signature.svg?style=flat-square)](https://www.npmjs.com/package/x-hub-signature)
 [![Sponsor on GitHub](https://img.shields.io/static/v1?label=Sponsor&message=❤&logo=GitHub&link=https://github.com/sponsors/compwright)](https://github.com/sponsors/compwright)
 
 X-Hub-Signature is a compact way to validate real-time updates, such as webhooks from [Facebook](https://developers.facebook.com/docs/graph-api/webhooks/) and [GitHub](https://developer.github.com/webhooks/securing/).
