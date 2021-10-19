@@ -36,7 +36,8 @@ app.use(webhookMiddleware({
 * `algorithm` (required) - `sha1` or other desired signing algorithm
 * `secret` (required) - signing secret that the webhook was signed with
 * `require` (optional) - boolean, whether to require the presence of the `X-Hub-Signature` header. If true, throws an HTTP 400 error if the header is not present. If false, the middleware will pass the request on if the header is not present, and validate the header only if it is present. (default: `true`)
-* `getRawBody` - function that accepts `req` as the first argument and returns the raw body. If you use the bundled body-parser verifier (see below), you don't need to set this option.
+* `getRawBody` (optional) - function that accepts `req` as the first argument and returns the raw body. If you use the bundled body-parser verifier (see below), you don't need to set this option.
+* `header` (optional) - the default header is `X-Hub-Signature`. For `sha256`, the header needs to be `X-Hub-Signature-256`.
 
 ### Use with body-parser
 
