@@ -39,4 +39,14 @@ describe('x-hub-signature.signer', function() {
         signature.should.equal(expected);
     });
 
+    it('should sign UTF-8 bodies with sha256', function() {
+        const expected = 'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f';
+        const secret = 'my_little_secret';
+        const algorithm = 'sha256';
+        const body = Buffer.from('{ "id": "realtime_update" }');
+        const sign = signer({ algorithm, secret });
+        const signature = sign(body);
+        signature.should.equal(expected);
+    });
+
 });
