@@ -8,6 +8,7 @@ function extractRawBody (req, res, buf) {
 const defaults = {
     require: true,
     algorithm: 'sha1',
+    header: 'X-Hub-Signature',
     getRawBody: req => req.rawBody
 };
 
@@ -25,16 +26,16 @@ module.exports = function (options) {
             return next(httpError(500, 'Missing req.rawBody, see the x-hub-signature readme'));
         }
 
-        const signature = req.header('X-Hub-Signature');
+        const signature = req.header(config.header);
 
         if (config.require && !signature) {
-            return next(httpError(400, 'Missing X-Hub-Signature header'));
+            return next(httpError(400, `Missing ${config.header} header`));
         }
         else if (signature) {
             const body = Buffer.from(rawBody);
 
             if (signature !== sign(body)) {
-                return next(httpError(400, 'Invalid X-Hub-Signature'));
+                return next(httpError(400, `Invalid ${config.header}`));
             }
         }
 
