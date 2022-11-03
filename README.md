@@ -21,9 +21,9 @@ npm install x-hub-signature --save
 Use the bundled signature generator to sign a request body buffer.
 
 ```javascript
-const signer = require('x-hub-signature');
-const sign = signer({ algorithm: 'sha1', secret: 'my_little_secret' });
-const signature = sign(new Buffer('random-signature-body'));
+import XHubSignature from 'x-hub-signature';
+const x = new XHubSignature('sha1', 'my_little_secret');
+const signature = x.sign(new Buffer('random-signature-body'));
 // sha1=3dca279e731c97c38e3019a075dee9ebbd0a99f0
 ```
 
@@ -35,7 +35,3 @@ const signature = sign(new Buffer('random-signature-body'));
 ## License
 
 MIT License
-
-## Acknowledgements
-
-This project was based on [express-x-hub](https://github.com/alexcurtis/express-x-hub) by Alex Curtis.

@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/compwright/x-hub-signature/issues"
   },
-  "main": "src/",
+  "type": "module",
   "engines": {
     "node": ">= 16"
   },
@@ -32,8 +32,21 @@
     "mocha": "mocha -r ./test/support/env -R spec ./test",
     "test": "npm run lint && npm run mocha"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/XHubSignature.mjs",
+      "require": "./dist/XHubSignature.cjs"
+    }
+  },
+  "main": "./dist/XHubSignature.cjs",
+  "module": "./dist/XHubSignature.mjs",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "jest": "latest",
     "standard": "latest",
+    "standard-version": "latest",
+    "unbuild": "latest"
   }
 }

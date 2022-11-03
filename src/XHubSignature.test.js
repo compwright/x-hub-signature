@@ -1,16 +1,12 @@
-import signer from './index'
+import XHubSignature from './XHubSignature'
 
-describe('signer', function () {
-  it('should return a function', function () {
-    expect(typeof signer({ algorithm: 'foo', secret: 'bar' })).toBe('function')
+describe('XHubSignature', function () {
+  it('should throw when algorithm is not specified', function () {
+    expect(() => new XHubSignature('', 'asdf')).toThrow(Error)
   })
 
-  it('should throw when options.algorithm is not specified', function () {
-    expect(() => signer({ algorithm: '', secret: 'asdf' })).toThrow(Error)
-  })
-
-  it('should throw when options.secret is empty', function () {
-    expect(() => signer({ algorithm: 'sha1', secret: '' })).toThrow(Error)
+  it('should throw when secret is empty', function () {
+    expect(() => new XHubSignature('sha1', '')).toThrow(Error)
   })
 
   it('should sign using the specified parameters', function () {
@@ -18,8 +14,8 @@ describe('signer', function () {
     const secret = 'my_little_secret'
     const algorithm = 'sha1'
     const body = Buffer.from('random-signature-body')
-    const sign = signer({ algorithm, secret })
-    const signature = sign(body)
+    const x = new XHubSignature(algorithm, secret)
+    const signature = x.sign(body)
     expect(signature).toBe(expected)
     expect(signature).toMatch(algorithm)
   })
@@ -29,8 +25,8 @@ describe('signer', function () {
     const secret = 'my_little_secret'
     const algorithm = 'sha1'
     const body = Buffer.from('random-utf-8-あいうえお-body')
-    const sign = signer({ algorithm, secret })
-    const signature = sign(body)
+    const x = new XHubSignature(algorithm, secret)
+    const signature = x.sign(body)
     expect(signature).toBe(expected)
   })
 
@@ -39,8 +35,8 @@ describe('signer', function () {
     const secret = 'my_little_secret'
     const algorithm = 'sha256'
     const body = Buffer.from('{ "id": "realtime_update" }')
-    const sign = signer({ algorithm, secret })
-    const signature = sign(body)
+    const x = new XHubSignature(algorithm, secret)
+    const signature = x.sign(body)
     expect(signature).toBe(expected)
   })
 })
