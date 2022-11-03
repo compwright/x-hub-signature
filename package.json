@@ -1,14 +1,12 @@
 {
   "name": "x-hub-signature",
   "version": "1.4.0",
-  "description": "X-Hub signing tools for Node and Express",
+  "description": "X-Hub-Signature webhook signing tools for Node.js",
   "keywords": [
-    "express",
     "x-hub",
     "x-hub-signature",
     "xhub",
     "signature",
-    "middleware",
     "facebook",
     "realtime",
     "webhook"
@@ -35,8 +33,6 @@
     "test": "npm run eslint && npm run mocha"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "http-errors": "^1.8.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
