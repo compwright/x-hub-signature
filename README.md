@@ -8,6 +8,8 @@ X-Hub-Signature is a compact way to validate webhooks from [Facebook](https://de
 
 Requires Node.js 16+
 
+> The Express middleware that was included in this package in v1.x has been moved to a separate package. See [x-hub-signature-middleware](https://github.com/compwright/x-hub-signature-middleware).
+
 ## Getting Started
 
 To install:
