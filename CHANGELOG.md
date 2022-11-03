@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/compwright/x-hub-signature/compare/v2.0.0...v2.1.0) (2022-11-03)
+
+
+### Features
+
+* added verify(expectedHeader, requestBody) ([ea8b35a](https://github.com/compwright/x-hub-signature/commit/ea8b35aa7619219018b8ae72ea77c83cb7862495))
+
 ## [2.0.0](https://github.com/compwright/x-hub-signature/compare/v1.4.0...v2.0.0) (2022-11-03)
 
 
