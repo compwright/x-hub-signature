@@ -34,10 +34,13 @@ class XHubSignature {
     __privateSet(this, _algorithm, algorithm);
     __privateSet(this, _secret, secret);
   }
-  sign(buffer) {
+  sign(requestBody) {
     const hmac = crypto.createHmac(__privateGet(this, _algorithm), __privateGet(this, _secret));
-    hmac.update(buffer, "utf-8");
+    hmac.update(requestBody, "utf-8");
     return __privateGet(this, _algorithm) + "=" + hmac.digest("hex");
+  }
+  verify(expectedSignature, requestBody) {
+    return expectedSignature === this.sign(requestBody);
   }
 }
 _algorithm = new WeakMap();
