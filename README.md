@@ -1,10 +1,10 @@
 # X-Hub-Signature tools for Node.js
 
-[![Build Status](https://travis-ci.com/compwright/x-hub-signature.svg?branch=master)](https://travis-ci.com/compwright/x-hub-signature)
+[![Build Status](https://app.travis-ci.com/compwright/x-hub-signature.svg?branch=master)](https://app.travis-ci.com/github/compwright/x-hub-signature)
 [![Download Status](https://img.shields.io/npm/dm/x-hub-signature.svg?style=flat-square)](https://www.npmjs.com/package/x-hub-signature)
 [![Sponsor on GitHub](https://img.shields.io/static/v1?label=Sponsor&message=❤&logo=GitHub&link=https://github.com/sponsors/compwright)](https://github.com/sponsors/compwright)
 
-X-Hub-Signature is a compact way to validate real-time updates, such as webhooks from [Facebook](https://developers.facebook.com/docs/graph-api/webhooks/) and [GitHub](https://developer.github.com/webhooks/securing/).
+X-Hub-Signature is a compact way to validate webhooks from [Facebook](https://developers.facebook.com/docs/graph-api/webhooks/), [GitHub](https://developer.github.com/webhooks/securing/), or any other source that uses this signature scheme.
 
 Requires Node.js 16+
 
@@ -16,21 +16,23 @@ To install:
 npm install x-hub-signature --save
 ```
 
-## Signature API
+## Usage
 
-Use the bundled signature generator to sign a request body buffer.
+Sign a buffer containing a request body:
 
 ```javascript
 import XHubSignature from 'x-hub-signature';
 const x = new XHubSignature('sha1', 'my_little_secret');
-const signature = x.sign(new Buffer('random-signature-body'));
+const signature = x.sign(new Buffer('body-to-sign'));
 // sha1=3dca279e731c97c38e3019a075dee9ebbd0a99f0
 ```
 
-**Options:**
+### XHubSignature.prototype.sign(algorithm, secret)
 
 * `algorithm` (required) - `sha1` or other desired signing algorithm
 * `secret` (required) - signing secret that the webhook was signed with
+
+Returns a string containing the value expected in the `X-Hub-Signature` header.
 
 ## License
 
