@@ -28,16 +28,13 @@
     "node": ">=10"
   },
   "scripts": {
-    "eslint": "eslint ./src ./test --fix",
+    "lint": "semistandard --env mocha --fix ./src ./test",
     "mocha": "mocha -r ./test/support/env -R spec ./test",
-    "test": "npm run eslint && npm run mocha"
-  },
-  "dependencies": {
+    "test": "npm run lint && npm run mocha"
   },
   "devDependencies": {
-    "chai": "^4.3.4",
-    "eslint": "^8.0.1",
-    "express": "^4.17.1",
-    "mocha": "^9.1.3"
+    "chai": "latest",
+    "mocha": "latest",
+    "semistandard": "latest"
   }
 }
