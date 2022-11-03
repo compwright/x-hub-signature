@@ -1,6 +1,6 @@
 {
   "name": "x-hub-signature",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "X-Hub-Signature webhook signing tools for Node.js",
   "keywords": [
     "x-hub",
