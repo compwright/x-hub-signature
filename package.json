@@ -25,7 +25,7 @@
   },
   "main": "src/",
   "engines": {
-    "node": ">=10"
+    "node": ">= 16"
   },
   "scripts": {
     "lint": "semistandard --env mocha --fix ./src ./test",

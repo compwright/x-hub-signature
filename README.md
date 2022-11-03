@@ -6,7 +6,7 @@
 
 X-Hub-Signature is a compact way to validate real-time updates, such as webhooks from [Facebook](https://developers.facebook.com/docs/graph-api/webhooks/) and [GitHub](https://developer.github.com/webhooks/securing/).
 
-Requires Node.js 10+
+Requires Node.js 16+
 
 ## Getting Started
 
