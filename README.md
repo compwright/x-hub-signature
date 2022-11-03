@@ -27,12 +27,27 @@ const signature = x.sign(new Buffer('body-to-sign'));
 // sha1=3dca279e731c97c38e3019a075dee9ebbd0a99f0
 ```
 
-### XHubSignature.prototype.sign(algorithm, secret)
+## XHubSignature
+
+### constructor(algorithm, secret)
 
 * `algorithm` (required) - `sha1` or other desired signing algorithm
 * `secret` (required) - signing secret that the webhook was signed with
 
+Creates an XHubSignature instance.
+
+### sign(requestBody)
+
+* `requestBody` (required) - a string or Buffer containing the body of the request to sign
+
 Returns a string containing the value expected in the `X-Hub-Signature` header.
+
+### verify(expectedSignature, requestBody)
+
+* `expectedSignature` (required) - a string containing the `X-Hub-Signature` header value for an incoming request
+* `requestBody` (required) - a string or Buffer containing the body of the incoming request
+
+Returns `true` if the signature is valid, or false if it is invalid.
 
 ## License
 

@@ -17,9 +17,13 @@ export default class XHubSignature {
     this.#secret = secret
   }
 
-  sign (buffer) {
+  sign (requestBody) {
     const hmac = crypto.createHmac(this.#algorithm, this.#secret)
-    hmac.update(buffer, 'utf-8')
+    hmac.update(requestBody, 'utf-8')
     return this.#algorithm + '=' + hmac.digest('hex')
+  }
+
+  verify (expectedSignature, requestBody) {
+    return expectedSignature === this.sign(requestBody)
   }
 }
