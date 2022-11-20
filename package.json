@@ -27,11 +27,6 @@
   "engines": {
     "node": ">= 16"
   },
-  "scripts": {
-    "lint": "semistandard --env mocha --fix ./src ./test",
-    "mocha": "mocha -r ./test/support/env -R spec ./test",
-    "test": "npm run lint && npm run mocha"
-  },
   "exports": {
     ".": {
       "import": "./dist/XHubSignature.mjs",
