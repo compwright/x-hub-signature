@@ -34,7 +34,8 @@ describe('XHubSignature', () => {
     })
 
     it('should sign UTF-8 bodies with sha256', () => {
-      const expected = 'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f'
+      const expected =
+        'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f'
       const secret = 'my_little_secret'
       const algorithm = 'sha256'
       const body = Buffer.from('{ "id": "realtime_update" }')
@@ -62,7 +63,8 @@ describe('XHubSignature', () => {
     })
 
     it('should return true when valid and the body contains UTF-8 characters (SHA-256)', () => {
-      const expected = 'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f'
+      const expected =
+        'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f'
       const body = Buffer.from('{ "id": "realtime_update" }')
       const x = new XHubSignature('sha256', 'my_little_secret')
       const isValid = x.verify(expected, body)
@@ -84,7 +86,8 @@ describe('XHubSignature', () => {
     })
 
     it('should return false when the signature algorithm does not match', () => {
-      const expected = 'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f'
+      const expected =
+        'sha256=2bee603b1bd2b873912ee43469a3b4a377ad70e7f64cbd58ccdbc67eb9a1b37f'
       const body = Buffer.from('{ "id": "realtime_update" }')
       const x = new XHubSignature('sha1', 'my_little_secret')
       const isValid = x.verify(expected, body)

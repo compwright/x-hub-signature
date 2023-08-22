@@ -6,7 +6,7 @@ export default class XHubSignature {
   #algorithm = null
   #secret = null
 
-  constructor (algorithm, secret) {
+  constructor(algorithm, secret) {
     if (!algorithm) {
       throw new Error('Algorithm is required')
     }
@@ -19,13 +19,13 @@ export default class XHubSignature {
     this.#secret = secret
   }
 
-  sign (requestBody) {
+  sign(requestBody) {
     const hmac = crypto.createHmac(this.#algorithm, this.#secret)
     hmac.update(requestBody, 'utf-8')
     return this.#algorithm + '=' + hmac.digest('hex')
   }
 
-  verify (expectedSignature, requestBody) {
+  verify(expectedSignature, requestBody) {
     const expected = encoder.encode(expectedSignature)
     const actualSignature = this.sign(requestBody)
     const actual = encoder.encode(signature)
