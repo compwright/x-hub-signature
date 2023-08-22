@@ -15,7 +15,8 @@
     "name": "Jonathon Hill"
   },
   "scripts": {
-    "fmt": "npx -p prettier@3 -- prettier -w '*/**.{js,md}'"
+    "fmt": "npx -p prettier@3 -- prettier -w '*/**.{js,md}'",
+    "test": "npx -p jest@29 -- jest ./src/XHubSignature.test.js"
   },
   "license": "MIT",
   "homepage": "https://github.com/compwright/x-hub-signature",
