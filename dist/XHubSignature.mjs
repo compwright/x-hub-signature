@@ -18,11 +18,12 @@ var __privateSet = (obj, member, value, setter) => {
   setter ? setter.call(obj, value) : member.set(obj, value);
   return value;
 };
-var _algorithm, _secret;
+var _algorithm, _secret, _encoder;
 class XHubSignature {
   constructor(algorithm, secret) {
     __privateAdd(this, _algorithm, null);
     __privateAdd(this, _secret, null);
+    __privateAdd(this, _encoder, null);
     if (!algorithm) {
       throw new Error("Algorithm is required");
     }
@@ -31,6 +32,7 @@ class XHubSignature {
     }
     __privateSet(this, _algorithm, algorithm);
     __privateSet(this, _secret, secret);
+    __privateSet(this, _encoder, new TextEncoder());
   }
   sign(requestBody) {
     const hmac = crypto.createHmac(__privateGet(this, _algorithm), __privateGet(this, _secret));
@@ -38,10 +40,16 @@ class XHubSignature {
     return __privateGet(this, _algorithm) + "=" + hmac.digest("hex");
   }
   verify(expectedSignature, requestBody) {
-    return expectedSignature === this.sign(requestBody);
+    const expected = __privateGet(this, _encoder).encode(expectedSignature);
+    const actual = __privateGet(this, _encoder).encode(this.sign(requestBody));
+    if (expected.length !== actual.length) {
+      return false;
+    }
+    return crypto.timingSafeEqual(expected, actual);
   }
 }
 _algorithm = new WeakMap();
 _secret = new WeakMap();
+_encoder = new WeakMap();
 
 export { XHubSignature as default };

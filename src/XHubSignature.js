@@ -3,6 +3,7 @@ import crypto from 'crypto'
 export default class XHubSignature {
   #algorithm = null
   #secret = null
+  #encoder = null
 
   constructor (algorithm, secret) {
     if (!algorithm) {
@@ -15,6 +16,7 @@ export default class XHubSignature {
 
     this.#algorithm = algorithm
     this.#secret = secret
+    this.#encoder = new TextEncoder()
   }
 
   sign (requestBody) {
@@ -24,6 +26,11 @@ export default class XHubSignature {
   }
 
   verify (expectedSignature, requestBody) {
-    return expectedSignature === this.sign(requestBody)
+    const expected = this.#encoder.encode(expectedSignature)
+    const actual = this.#encoder.encode(this.sign(requestBody))
+    if (expected.length !== actual.length) {
+      return false
+    }
+    return crypto.timingSafeEqual(expected, actual)
   }
 }
