@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/compwright/x-hub-signature/compare/v2.1.1...v2.1.2) (2023-10-01)
+
+
+### Bug Fixes
+
+* use timing-safe string comparison ([#7](https://github.com/compwright/x-hub-signature/issues/7)) ([6690139](https://github.com/compwright/x-hub-signature/commit/669013946566a2a71d7476abd60480f56b080d1b)), closes [#6](https://github.com/compwright/x-hub-signature/issues/6)
+
 ### [2.1.1](https://github.com/compwright/x-hub-signature/compare/v2.1.0...v2.1.1) (2022-11-03)
 
 ## [2.1.0](https://github.com/compwright/x-hub-signature/compare/v2.0.0...v2.1.0) (2022-11-03)
