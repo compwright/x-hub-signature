@@ -34,7 +34,6 @@
     }
   },
   "main": "./dist/XHubSignature.cjs",
-  "module": "./dist/XHubSignature.mjs",
   "files": [
     "dist"
   ],
