@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/compwright/x-hub-signature/compare/v2.1.2...v2.1.3) (2026-02-26)
+
+
+### Bug Fixes
+
+* use built-in crypto ([7bbea54](https://github.com/compwright/x-hub-signature/commit/7bbea543d6e24cb779559ef746a634b6db80a958))
+
 ### [2.1.2](https://github.com/compwright/x-hub-signature/compare/v2.1.1...v2.1.2) (2023-10-01)
 
 
