@@ -19,3 +19,6 @@ bower_components/*
 .scratch
 *.sublime-workspace
 coverage
+
+package-lock.json
+yarn.lock

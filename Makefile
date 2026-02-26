@@ -10,9 +10,9 @@ test-watch:
 	NODE_OPTIONS=--experimental-vm-modules ./node_modules/.bin/jest --watchAll
 
 clean:
-	rm -Rf ./dist
+	rm -Rf ./dist ./node_modules package-lock.json yarn.lock
 
-build: clean test
+build: test
 	./node_modules/.bin/unbuild
 
 release:

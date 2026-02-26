@@ -42,6 +42,7 @@
     "jest": "latest",
     "standard": "latest",
     "standard-version": "latest",
+    "typescript": "latest",
     "unbuild": "latest"
   }
 }
