@@ -1,6 +1,6 @@
 'use strict';
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 function _interopDefaultCompat (e) { return e && typeof e === 'object' && 'default' in e ? e.default : e; }
 
